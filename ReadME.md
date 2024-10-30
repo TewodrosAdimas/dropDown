@@ -24,8 +24,8 @@ This project demonstrates a custom dropdown menu built with HTML, CSS, and JavaS
 
 1. **Clone the Repository**:
    ```bash
-   git clone https://github.com/yourusername/dropdown-menu-example.git
-   cd dropdown-menu-example
+   git clone https://github.com/TewodrosAdimas/dropDown.git
+   cd dropDown
    ```
 
 2. **Open in Browser**:
