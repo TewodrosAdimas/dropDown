@@ -1,6 +1,6 @@
 let isDropdownOpen = false;
 let selectedOption = 'Select here';
-let numSelected = 0; // Initialize the numSelected variable
+let numSelected = 0; 
 
 function toggleDropdown() {
     const dropdownMenu = document.querySelector('.dropdown-menu');
@@ -41,7 +41,7 @@ function selectOption(option) {
         });
     }
 
-    // Update the dropdown toggle text
+    //dropdown toggle text
     document.querySelector('.dropdown-toggle').innerHTML = selectedOption;
     document.querySelector('.dropdown-menu').style.display = 'none'; // Hide the dropdown menu
     isDropdownOpen = false; // Close the dropdown
