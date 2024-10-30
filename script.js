@@ -1,6 +1,5 @@
 let isDropdownOpen = false;
 let selectedOption = 'Select here';
-let numSelected = 0; 
 
 function toggleDropdown() {
     const dropdownMenu = document.querySelector('.dropdown-menu');
@@ -19,7 +18,6 @@ function selectOption(option) {
     // If the clicked option already has a checkmark
     if (currentSelectedItem && currentSelectedItem.textContent.includes(option + ' ✓')) {
         selectedOption = 'Select here'; // Reset selectedOption to 'Select here'
-        numSelected = 0; // Reset numSelected
 
         // Remove the checkmark from the currently selected item
         currentSelectedItem.innerHTML = option; // Remove '✓'
@@ -33,7 +31,6 @@ function selectOption(option) {
 
         // Set the current option as selected
         selectedOption = option;
-        numSelected += 1; // Increment numSelected
 
         // Add checkmark to the current selection
         dropdownItems.forEach(item => {
