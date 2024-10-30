@@ -1,5 +1,6 @@
 let isDropdownOpen = false;
 let selectedOption = 'Select here';
+let numSelected = 0; // Initialize the numSelected variable
 
 function toggleDropdown() {
     const dropdownMenu = document.querySelector('.dropdown-menu');
@@ -10,17 +11,38 @@ function toggleDropdown() {
     dropdownToggle.innerHTML = isDropdownOpen ? 'Select here ↑' : selectedOption;
 }
 
+
 function selectOption(option) {
-    selectedOption = option;
-    document.querySelector('.dropdown-toggle').innerHTML = selectedOption;
-    
-    // Update menu items to show a checkmark next to the selected option
     const dropdownItems = document.querySelectorAll('.dropdown-item');
-    dropdownItems.forEach(item => {
-        item.innerHTML = item.textContent === option ? `${option} ✓` : item.textContent;
-    });
-    
-    document.querySelector('.dropdown-menu').style.display = 'none';
-    isDropdownOpen = false;
+    const currentSelectedItem = Array.from(dropdownItems).find(item => item.textContent.includes('✓'));
+
+    // If the clicked option already has a checkmark
+    if (currentSelectedItem && currentSelectedItem.textContent.includes(option + ' ✓')) {
+        selectedOption = 'Select here'; // Reset selectedOption to 'Select here'
+        numSelected = 0; // Reset numSelected
+
+        // Remove the checkmark from the currently selected item
+        currentSelectedItem.innerHTML = option; // Remove '✓'
+    } else {
+        // Remove checkmark from previously selected item
+        dropdownItems.forEach(item => {
+            if (item.textContent.includes('✓')) {
+                item.innerHTML = item.textContent.replace(' ✓', ''); // Remove the checkmark from the previous item
+            }
+        });
+
+        // Set the current option as selected
+        selectedOption = option;
+        numSelected += 1; // Increment numSelected
+
+        // Add checkmark to the current selection
+        dropdownItems.forEach(item => {
+            item.innerHTML = item.textContent === option ? `${option} ✓` : item.textContent; // Add checkmark to current selection
+        });
+    }
+
+    // Update the dropdown toggle text
+    document.querySelector('.dropdown-toggle').innerHTML = selectedOption;
+    document.querySelector('.dropdown-menu').style.display = 'none'; // Hide the dropdown menu
+    isDropdownOpen = false; // Close the dropdown
 }
-    
